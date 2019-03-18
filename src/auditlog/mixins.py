@@ -43,8 +43,10 @@ class LogEntryAdminMixin(object):
         except NoReverseMatch:
             return obj.object_repr
         else:
-            return mark_safe('<a href="{}">{}</a>'.format(link, obj.object_repr))
+            return mark_safe('<a href="%s">%s</a>' % (link, obj.object_repr))
+    resource_url.allow_tags = True
     resource_url.short_description = 'Resource'
+
 
     def msg_short(self, obj):
         if obj.action == 2:
